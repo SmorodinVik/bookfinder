@@ -1,0 +1,56 @@
+{
+  "name": "bookfinder",
+  "version": "1.0.0",
+  "description": "test project for future-group",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --mode=production --node-env=production",
+    "build:dev": "webpack --mode=development",
+    "build:prod": "webpack --mode=production --node-env=production",
+    "watch": "webpack --watch",
+    "serve": "webpack serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SmorodinVik/bookfinder.git"
+  },
+  "author": "Viktor Smorodin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SmorodinVik/bookfinder/issues"
+  },
+  "type": "module",
+  "homepage": "https://github.com/SmorodinVik/bookfinder#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.16.0",
+    "@babel/core": "^7.16.0",
+    "@babel/plugin-transform-runtime": "^7.16.4",
+    "@babel/preset-env": "^7.16.0",
+    "@babel/preset-react": "^7.16.0",
+    "@webpack-cli/generators": "^2.4.1",
+    "babel-loader": "^8.2.3",
+    "css-loader": "^6.5.1",
+    "eslint": "^8.3.0",
+    "eslint-plugin-react": "^7.27.1",
+    "html-webpack-plugin": "^5.5.0",
+    "i": "^0.3.7",
+    "npm": "^8.1.4",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.64.3",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.4.0"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.12.1",
+    "@babel/runtime": "^7.16.3",
+    "@reduxjs/toolkit": "^1.6.2",
+    "core-js": "^3.19.1",
+    "i18next": "^21.5.3",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-i18next": "^11.14.3",
+    "react-redux": "^7.2.6",
+    "regenerator-runtime": "^0.13.9"
+  }
+}
