@@ -47,6 +47,9 @@ h1 {
 .flex {
   display: flex;
   justify-content: center;
+}
+
+.flex-wrap {
   flex-wrap: wrap;
 }
 
@@ -62,15 +65,19 @@ h1 {
   white-space: nowrap;
 }
 
-.search-input {
-  margin: 0 15px;
+.input-box {
+  margin: 0 15px 15px;
+}
 
+.search-input {
   width: 200px;
   height: 19px;
+
+  margin-right: 10px;
 }
 
 .form-selectors {
-  margin: 15px;
+  margin: 0 10px;
 }
 
 form span {

@@ -33,7 +33,7 @@ const SearchBar = ({ addBooks, setBooksLoadingStatus, booksLoadingStatus }) => {
 
   return (
     <form onSubmit={f.handleSubmit}>
-      <div className="flex">
+      <div className="flex input-box">
         <label htmlFor="searchInput" className="sr-only">{t('searchBar.searchInput')}</label>
         <input
           className="search-input"
@@ -46,34 +46,38 @@ const SearchBar = ({ addBooks, setBooksLoadingStatus, booksLoadingStatus }) => {
         />
         <button type="submit" className="btn">Find</button>
       </div>
-      <div className="flex form-selectors">
-        <span>{t('searchBar.categories')}</span>
-        <select
-          id="categories"
-          name="categories"
-          type="text"
-          onChange={f.handleChange}
-          value={f.values.categories}
-        >
-          <option value="all">{t('categorySelect.all')}</option>
-          <option value="art">{t('categorySelect.art')}</option>
-          <option value="biography">{t('categorySelect.biography')}</option>
-          <option value="computers">{t('categorySelect.computers')}</option>
-          <option value="history">{t('categorySelect.history')}</option>
-          <option value="medical">{t('categorySelect.medical')}</option>
-          <option value="poetry">{t('categorySelect.poetry')}</option>
+      <div className="flex flex-wrap">
+        <div className="flex form-selectors">
+          <span>{t('searchBar.categories')}</span>
+          <select
+            id="categories"
+            name="categories"
+            type="text"
+            onChange={f.handleChange}
+            value={f.values.categories}
+          >
+            <option value="all">{t('categorySelect.all')}</option>
+            <option value="art">{t('categorySelect.art')}</option>
+            <option value="biography">{t('categorySelect.biography')}</option>
+            <option value="computers">{t('categorySelect.computers')}</option>
+            <option value="history">{t('categorySelect.history')}</option>
+            <option value="medical">{t('categorySelect.medical')}</option>
+            <option value="poetry">{t('categorySelect.poetry')}</option>
         </select>
-        <span>{t('searchBar.sortBy')}</span>
-        <select
-          id="sortBy"
-          name="sortBy"
-          type="text"
-          onChange={f.handleChange}
-          value={f.values.sortBy}
-        >
-          <option value="relevance">{t('sortBySelect.relevance')}</option>
-          <option value="newest">{t('sortBySelect.newest')}</option>
-        </select>
+        </div>
+        <div className="flex form-selectors">
+          <span>{t('searchBar.sortBy')}</span>
+          <select
+            id="sortBy"
+            name="sortBy"
+            type="text"
+            onChange={f.handleChange}
+            value={f.values.sortBy}
+          >
+            <option value="relevance">{t('sortBySelect.relevance')}</option>
+            <option value="newest">{t('sortBySelect.newest')}</option>
+          </select>
+        </div>
       </div>
     </form>
   );
