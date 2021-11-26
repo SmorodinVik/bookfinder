@@ -8,7 +8,7 @@ import init from './init.jsx';
 const runApp = async () => {
   render(
     await init(),
-    document.getElementById('finder'),
+    document.getElementById('container'),
   );
 };
 

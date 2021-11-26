@@ -4,10 +4,13 @@ export default {
       en: 'English',
       ru: 'Русский',
     },
-    searchBar: {
+    header: {
       title: 'Book Finder',
+    },
+    searchBar: {
+      searchInput: 'Search bar',
       categories: 'Categories',
-      sortby: 'Sorting by',
+      sortBy: 'Sorting by',
     },
     categorySelect: {
       all: 'all',

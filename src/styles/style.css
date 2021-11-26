@@ -1,42 +1,79 @@
+@font-face {
+  font-weight: normal;
+  font-family: "DINPro";
+  src: url(../fonts/DINPro.woff) format('woff');
+}
+
+@font-face {
+  font-weight: bold;
+  font-family: "DINPro";
+  src: url(../fonts/DINPro-Bold.woff) format('woff');
+}
+
+@font-face {
+  font-weight: normal;
+  font-family: "Gilroy";
+  src: url(../fonts/Gilroy-Regular.woff2) format('woff2');
+}
+
 html {
-  background: pink;
+  font: normal 19px/1.5 "Gilroy", sans-serif;
+
+  background: rgb(209, 231, 238);
 }
 
-.spinner {
-  animation: rotate 2s linear infinite;
-  z-index: 2;
+header {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  margin: -25px 0 0 -25px;
-  width: 50px;
-  height: 50px;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 200px;
+  margin: 0;
+
+  text-align: center;
+  
+  background: center url('../img/background.jpg');
 }
 
-.path {
-  stroke: hsl(210, 70, 75);
-  stroke-linecap: round;
-  animation: dash 1.5s ease-in-out infinite;
+h1 {
+  color: #fff;
+  font-size: 35px;
+  letter-spacing: 0.05em;
+
+  margin-bottom: 5px;
 }
 
-
-@keyframes rotate {
-  100% {
-    transform: rotate(360deg);
-  }
+.flex {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
-@keyframes dash {
-  0% {
-    stroke-dasharray: 1, 150;
-    stroke-dashoffset: 0;
-  }
-  50% {
-    stroke-dasharray: 90, 150;
-    stroke-dashoffset: -35;
-  }
-  100% {
-    stroke-dasharray: 90, 150;
-    stroke-dashoffset: -124;
-  }
+.sr-only {
+  position: absolute;
+  
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+
+  white-space: nowrap;
+}
+
+.search-input {
+  margin: 0 15px;
+
+  width: 200px;
+  height: 19px;
+}
+
+.form-selectors {
+  margin: 15px;
+}
+
+form span {
+  color: #fff;
+  margin: 0 10px;
 }
