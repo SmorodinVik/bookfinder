@@ -26,12 +26,16 @@ export default {
       newest: 'newest',
     },
     buttons: {
+      findBtn: 'Find',
       backBtn: 'back',
       loadMoreBtn: 'load more',
     },
     booksFound: {
       found_one: '{{count}} book found',
       found_other: '{{count}} books found',
-    }
+    },
+    messages: {
+      minOneSymb: 'one symbol minimum',
+    },
   },
 };

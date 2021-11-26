@@ -1,18 +1,25 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 import { useFormik } from 'formik';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import * as actions from '../storeSlices/booksSlice.js';
+import pathCompiler from '../utils/pathCompiler.js';
 
 const mapStateToProps = ({ booksLoadingStatus }) => ({ booksLoadingStatus });
 
 const actionCreators = {
-  addBooks: actions.addBooks,
+  loadBooks: actions.loadBooks,
   setBooksLoadingStatus: actions.setBooksLoadingStatus,
+  setStatusMessage: actions.setStatusMessage,
 };
 
-const SearchBar = ({ addBooks, setBooksLoadingStatus, booksLoadingStatus }) => {
+const SearchBar = ({
+  loadBooks,
+  setBooksLoadingStatus,
+  booksLoadingStatus,
+  setStatusMessage,
+}) => {
   const { t } = useTranslation();
   const inputRef = useRef();
 
@@ -23,11 +30,24 @@ const SearchBar = ({ addBooks, setBooksLoadingStatus, booksLoadingStatus }) => {
   const f = useFormik({
     initialValues: {
       searchInput: '',
-      categories: 'all',
+      categories: '',
       sortBy: 'relevance',
     },
     onSubmit: async ({ searchInput, categories, sortBy }) => {
-      console.log(searchInput, categories, sortBy);
+      if (searchInput === '') {
+        setStatusMessage({ message: t('messages.oneSymbMin')});
+        return;
+      }
+      setBooksLoadingStatus({ status: 'loading' });
+      const path = pathCompiler(searchInput, categories, sortBy);
+      try {
+        const { data: { items }} = await axios.get(path);
+        loadBooks({ items })
+        console.log(items);
+      } catch (err) {
+        console.log(err);
+      }
+      setBooksLoadingStatus({ status: 'finished' });
     },
   });
 
@@ -44,7 +64,13 @@ const SearchBar = ({ addBooks, setBooksLoadingStatus, booksLoadingStatus }) => {
           onChange={f.handleChange}
           value={f.values.searchInput}
         />
-        <button type="submit" className="btn">Find</button>
+        <button
+          type="submit"
+          disabled={booksLoadingStatus === 'loading'}
+          className="btn"
+        >
+          {t('buttons.findBtn')}
+        </button>
       </div>
       <div className="flex flex-wrap">
         <div className="flex form-selectors">
@@ -56,7 +82,7 @@ const SearchBar = ({ addBooks, setBooksLoadingStatus, booksLoadingStatus }) => {
             onChange={f.handleChange}
             value={f.values.categories}
           >
-            <option value="all">{t('categorySelect.all')}</option>
+            <option value="">{t('categorySelect.all')}</option>
             <option value="art">{t('categorySelect.art')}</option>
             <option value="biography">{t('categorySelect.biography')}</option>
             <option value="computers">{t('categorySelect.computers')}</option>

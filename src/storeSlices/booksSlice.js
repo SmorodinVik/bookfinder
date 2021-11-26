@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
+  statusMessage: null,
   booksLoadingStatus: 'finished',
   books: null,
   booksCount: null,
@@ -14,10 +15,13 @@ const booksSlice = createSlice({
   initialState,
   // !!!Update Reducers!!!
   reducers: {
+    setStatusMessage: (state, { payload }) => {
+      state.statusMessage = payload.message;
+    },
     setBooksLoadingStatus: (state, { payload }) => {
       state.booksLoadingStatus = payload.status;
     },
-    addBooks: (state, { payload }) => {
+    loadBooks: (state, { payload }) => {
       state.books = payload.items;
       state.booksCount = payload.items.length;
       if (payload.items.length <= paginationStep) {
@@ -32,8 +36,9 @@ const booksSlice = createSlice({
 const { actions, reducer } = booksSlice;
 
 export const {
-  addBooks,
+  loadBooks,
   setBooksLoadingStatus,
+  setStatusMessage,
 } = actions;
 
 export default reducer;
