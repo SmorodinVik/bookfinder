@@ -1,24 +1,24 @@
 import React, { useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 import { useFormik } from 'formik';
-import axios from 'axios';
 import { useTranslation } from 'react-i18next';
-import * as actions from '../storeSlices/booksSlice.js';
-import pathCompiler from '../utils/pathCompiler.js';
+import * as booksActions from '../storeSlices/booksSlice.js';
+import { pathMaker, requestMaker } from '../utils/pathCompiler.js';
 
 const mapStateToProps = ({ booksLoadingStatus }) => ({ booksLoadingStatus });
 
 const actionCreators = {
-  loadBooks: actions.loadBooks,
-  setBooksLoadingStatus: actions.setBooksLoadingStatus,
-  setStatusMessage: actions.setStatusMessage,
+  loadBooks: booksActions.loadBooks,
+  clearBooks: booksActions.clearBooks,
+  setStatusMessage: booksActions.setStatusMessage,
+  setCurrentRequest: booksActions.setCurrentRequest,
 };
 
 const SearchBar = ({
   loadBooks,
-  setBooksLoadingStatus,
   booksLoadingStatus,
-  setStatusMessage,
+  clearBooks,
+  setCurrentRequest,
 }) => {
   const { t } = useTranslation();
   const inputRef = useRef();
@@ -34,20 +34,13 @@ const SearchBar = ({
       sortBy: 'relevance',
     },
     onSubmit: async ({ searchInput, categories, sortBy }) => {
-      if (searchInput === '') {
-        setStatusMessage({ message: t('messages.oneSymbMin')});
-        return;
-      }
-      setBooksLoadingStatus({ status: 'loading' });
-      const path = pathCompiler(searchInput, categories, sortBy);
-      try {
-        const { data: { items }} = await axios.get(path);
-        loadBooks({ items })
-        console.log(items);
-      } catch (err) {
-        console.log(err);
-      }
-      setBooksLoadingStatus({ status: 'finished' });
+      clearBooks();
+    
+      const requestString = requestMaker(searchInput, categories, sortBy);
+      const path = pathMaker(requestString);
+
+      setCurrentRequest({ request: requestString });
+      await loadBooks(path);
     },
   });
 
@@ -66,7 +59,7 @@ const SearchBar = ({
         />
         <button
           type="submit"
-          disabled={booksLoadingStatus === 'loading'}
+          disabled={booksLoadingStatus === 'loading' || f.values.searchInput === ''}
           className="btn"
         >
           {t('buttons.findBtn')}

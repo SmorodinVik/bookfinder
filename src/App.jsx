@@ -2,11 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import SearchBar from './components/SearchBar.jsx';
-import Spinner from './components/Spinner.jsx';
+import ResultsPage from './pages/ResultsPage.jsx';
+import MessageBar from './components/MessageBar.jsx';
 
-const mapStateToProps = ({ booksLoadingStatus }) => ({ booksLoadingStatus });
-
-const App = ({ booksLoadingStatus }) => {
+const App = () => {
   const { t } = useTranslation();
 
   return (
@@ -14,16 +13,11 @@ const App = ({ booksLoadingStatus }) => {
       <header>
         <h1>{t('header.title')}</h1>
         <SearchBar />
+        <MessageBar />
       </header>
-      <section className="books-container flex flex-wrap">
-      
-      </section>
-      {booksLoadingStatus === 'loading' && <Spinner />}
-      <footer>
-        <button>{'load more'}</button>
-      </footer>
+      <ResultsPage />
     </div>
   );
 };
 
-export default connect(mapStateToProps, null)(App);
+export default connect(null, null)(App);

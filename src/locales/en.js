@@ -28,14 +28,15 @@ export default {
     buttons: {
       findBtn: 'Find',
       backBtn: 'back',
-      loadMoreBtn: 'load more',
-    },
-    booksFound: {
-      found_one: '{{count}} book found',
-      found_other: '{{count}} books found',
+      loadMoreBtn: 'Load more...',
     },
     messages: {
+      networkError: 'network error',
       minOneSymb: 'one symbol minimum',
+      booksFound: {
+        found_one: '{{count}} book found',
+        found_other: '{{count}} books found',
+      },
     },
   },
 };
