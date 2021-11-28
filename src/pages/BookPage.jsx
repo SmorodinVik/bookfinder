@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
@@ -9,8 +9,12 @@ const mapStateToProps = ({ selectedBook }) => ({ selectedBook });
 const BookPage = ({ selectedBook }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  });
+
   const { title, categories, authors, imageLinks, description } = selectedBook.volumeInfo;
-  
   const bookTitle = title || '';
   const category = categories ? categories.join('/') : '';
   const author = authors ? authors.join(', ') : '';
