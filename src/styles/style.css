@@ -2,24 +2,19 @@
   --light-blue: rgb(209, 231, 238);
   --light-gray: #e3ecf2;
   --white: #fff;
-}
-
-@font-face {
-  font-weight: normal;
-  font-family: "DINPro";
-  src: url(../fonts/DINPro.woff) format('woff');
-}
-
-@font-face {
-  font-weight: bold;
-  font-family: "DINPro";
-  src: url(../fonts/DINPro-Bold.woff) format('woff');
+  --mainblue: #69a5cb;
 }
 
 @font-face {
   font-weight: normal;
   font-family: "Gilroy";
   src: url(../fonts/Gilroy-Regular.woff2) format('woff2');
+}
+
+@font-face {
+  font-weight: bold;
+  font-family: "Gilroy";
+  src: url(../fonts/Gilroy-Extrabold.woff) format('woff');
 }
 
 html {
@@ -171,6 +166,73 @@ form span {
   color: gray;
   font: 11px/1.1 sans-serif;
 }
+
+.book-container {
+  padding: 20px;
+
+  margin-bottom: 20px 0;
+
+  background: var(--light-gray);
+}
+
+.book-info {
+  max-width: 500px;
+}
+
+.book-category {
+  font-size: 14px;
+  text-decoration: underline;
+}
+
+.book-title {
+  margin: 0;
+  font: bold 18px/1.1 sans-serif;
+}
+
+.book-author {
+  font-size: 14px;
+  color: gray;
+}
+
+.book-description {
+  font-size: 15px;
+
+  min-width: 250px;
+  padding: 0 15px;
+
+  background: #e9eff2;
+
+  border: 1px solid #cfcfcf;
+  border-radius: 5px;
+}
+
+.book-image {
+  margin: auto 50px;
+
+  min-width: 200px;
+  object-fit: contain;
+
+  -webkit-box-shadow: 5px 5px 10px -5px rgba(34, 60, 80, 0.6);
+  -moz-box-shadow: 5px 5px 10px -5px rgba(34, 60, 80, 0.6);
+  box-shadow: 5px 5px 10px -5px rgba(34, 60, 80, 0.6);
+}
+
+.error {
+  text-align: center;
+  padding-top: 200px;
+  margin-bottom: 0;
+  
+  color: var(--mainblue);
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.error span {
+  margin-top: 0;
+  font-size: 20px;
+  font-weight: normal;
+}
+
 /* ------ Spinner Style ------- */
 
 .cssload-container {

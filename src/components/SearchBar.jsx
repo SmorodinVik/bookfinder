@@ -2,8 +2,10 @@ import React, { useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import * as booksActions from '../storeSlices/booksSlice.js';
 import { pathMaker, requestMaker } from '../utils/pathCompiler.js';
+import routes from '../routes.js';
 
 const mapStateToProps = ({ booksLoadingStatus }) => ({ booksLoadingStatus });
 
@@ -21,6 +23,7 @@ const SearchBar = ({
   setCurrentRequest,
 }) => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const inputRef = useRef();
 
   useEffect(() => {
@@ -34,6 +37,7 @@ const SearchBar = ({
       sortBy: 'relevance',
     },
     onSubmit: async ({ searchInput, categories, sortBy }) => {
+      navigate(routes.resultsPage);
       clearBooks();
     
       const requestString = requestMaker(searchInput, categories, sortBy);

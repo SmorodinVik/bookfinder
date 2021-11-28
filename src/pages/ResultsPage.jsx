@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import * as booksActions from '../storeSlices/booksSlice.js';
 import Card from '../components/Card.jsx';
 import Spinner from '../components/Spinner.jsx';
 import { pathMaker } from '../utils/pathCompiler.js';
+import routes from '../routes.js';
 
 const actionCreators = {
   setLastBooksIndex: booksActions.setLastBooksIndex,
@@ -33,6 +35,14 @@ const ResultsPage =  ({
   lastBookIndex,
   currentRequest,
 }) => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (loadingState === 'failed') {
+      navigate(routes.errorPage);
+    }
+  });
+
   const { t } = useTranslation();
 
   const handleLoadMore = async () => {

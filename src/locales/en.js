@@ -27,15 +27,19 @@ export default {
     },
     buttons: {
       findBtn: 'Find',
-      backBtn: 'Back to results',
+      backBtn: 'Go Back',
       loadMoreBtn: 'Load more...',
     },
     messages: {
-      networkError: 'network error',
+      noDescription: 'No description for this book.',
       booksFound: {
         found_one: '{{count}} book found',
         found_other: '{{count}} books found',
       },
+    },
+    errors: {
+      networkError: 'Network Error',
+      checkConnection: 'check your connection',
     },
   },
 };
