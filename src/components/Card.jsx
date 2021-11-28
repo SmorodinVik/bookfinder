@@ -1,7 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as booksActions from '../storeSlices/booksSlice.js';
 import defaultBook from '../img/defaultBook.jpg';
+import routes from '../routes.js';
 
 const actionCreators = {
   setSelectedBook: booksActions.setSelectedBook,
@@ -21,7 +23,7 @@ const Card = ({ bookInfo, setSelectedBook }) => {
 
   return (
     <div className="card" onClick={handleClick}>
-      <img className="card-image" src={link} alt={title} />
+      <Link to={routes.bookPage}><img className="card-image" src={link} alt={title} /></Link>
       <p className="card-category">{category}</p>
       <h3 className="card-title">{cardTitle}</h3>
       <p className="card-author">{author}</p>

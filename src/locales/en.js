@@ -27,7 +27,7 @@ export default {
     },
     buttons: {
       findBtn: 'Find',
-      backBtn: 'back',
+      backBtn: 'Back to results',
       loadMoreBtn: 'Load more...',
     },
     messages: {

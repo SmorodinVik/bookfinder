@@ -44,15 +44,15 @@ const ResultsPage =  ({
   const showLoadBtn = !showSpinner && (booksCount - 1 > lastBookIndex);
 
   return (
-    <div className="books-container">
-      <div className="flex flex-wrap justify-left">
+    <div className="page-container">
+      <div className="flex flex-wrap">
         {books.map((book) => <Card key={book.etag} bookInfo={book} />)}
       </div>
       {showSpinner && <Spinner />}
       {showLoadBtn && 
         <div className="flex">
           <button
-            className="load-more-btn"
+            className="btn-big"
             onClick={handleLoadMore}
           >
             {t('buttons.loadMoreBtn')}

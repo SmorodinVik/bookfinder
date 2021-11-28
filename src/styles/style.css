@@ -28,6 +28,10 @@ html {
   background: var(--light-blue);
 }
 
+body {
+  padding-bottom: 20px;
+}
+
 header {
   position: fixed;
   top: 0;
@@ -60,10 +64,6 @@ h1 {
 .flex {
   display: flex;
   justify-content: center;
-}
-
-.justify-left {
-  justify-content: left;
 }
 
 .flex-wrap {
@@ -102,11 +102,11 @@ form span {
   margin: 0 10px;
 }
 
-.books-container {
+.page-container {
   margin: 230px 50px 30px;
 }
 
-.load-more-btn {
+.btn-big {
   width: 120px;
   height: 30px;
 

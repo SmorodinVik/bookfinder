@@ -61,7 +61,7 @@ export const loadBooks = (path, lastIndex = 0) => async (dispatch) => {
     } else {
       dispatch(actions.loadBooksSuccess({ items: [] }));
     }
-    dispatch(actions.setBooksCount({ totalItems }));
+    lastIndex === 0 && dispatch(actions.setBooksCount({ totalItems }));
   } catch (err) {
     console.log(err);
     dispatch(actions.loadBooksError({ err }));
