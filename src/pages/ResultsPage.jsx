@@ -51,7 +51,7 @@ const ResultsPage =  ({
   };
 
   const showSpinner = loadingState === 'requesting';
-  const showLoadBtn = !showSpinner && (booksCount - 1 > lastBookIndex);
+  const showLoadBtn = !showSpinner && (booksCount  > lastBookIndex);
 
   return (
     <div className="page-container">
