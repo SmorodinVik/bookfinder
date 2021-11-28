@@ -32,7 +32,6 @@ export default {
     },
     messages: {
       networkError: 'network error',
-      minOneSymb: 'one symbol minimum',
       booksFound: {
         found_one: '{{count}} book found',
         found_other: '{{count}} books found',

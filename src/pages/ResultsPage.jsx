@@ -5,7 +5,6 @@ import * as booksActions from '../storeSlices/booksSlice.js';
 import Card from '../components/Card.jsx';
 import Spinner from '../components/Spinner.jsx';
 import { pathMaker } from '../utils/pathCompiler.js';
-import { paginationStep } from '../constants.js';
 
 const actionCreators = {
   setLastBooksIndex: booksActions.setLastBooksIndex,
@@ -33,31 +32,33 @@ const ResultsPage =  ({
   loadingState,
   lastBookIndex,
   currentRequest,
-  setLastBooksIndex,
 }) => {
   const { t } = useTranslation();
 
   const handleLoadMore = async () => {
-    const path = pathMaker(currentRequest, lastBookIndex + 1);
-    setLastBooksIndex({ index: lastBookIndex + paginationStep });
-    await loadBooks(path);
+    const path = pathMaker(currentRequest, lastBookIndex);
+    await loadBooks(path, lastBookIndex);
   };
+
+  const showSpinner = loadingState === 'requesting';
+  const showLoadBtn = !showSpinner && (booksCount - 1 > lastBookIndex);
 
   return (
     <div className="books-container">
-      <div className="flex flex-wrap">
-      {books.map((book) => <Card key={book.etag} bookInfo={book} />)}
+      <div className="flex flex-wrap justify-left">
+        {books.map((book) => <Card key={book.etag} bookInfo={book} />)}
       </div>
-      {(loadingState === 'requesting' && <Spinner />) ||
-      (booksCount > lastBookIndex
-        && <div className="flex">
-         <button
-          className="load-more-btn"
-          onClick={handleLoadMore}
+      {showSpinner && <Spinner />}
+      {showLoadBtn && 
+        <div className="flex">
+          <button
+            className="load-more-btn"
+            onClick={handleLoadMore}
           >
             {t('buttons.loadMoreBtn')}
           </button>
-      </div>)}
+        </div>
+      }
     </div>
   );
 };

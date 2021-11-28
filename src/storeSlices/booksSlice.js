@@ -40,6 +40,7 @@ const booksSlice = createSlice({
     clearBooks: (state) => {
       state.booksCount = null;
       state.books = [];
+      state.lastBookIndex = 0;
     },
     setSelectedBook: (state, { payload }) => {
       state.selectedBook = payload.book;
@@ -49,15 +50,18 @@ const booksSlice = createSlice({
 
 const { actions, reducer } = booksSlice;
 
-export const loadBooks = (path) => async (dispatch) => {
+export const loadBooks = (path, lastIndex = 0) => async (dispatch) => {
   dispatch(actions.loadBooksRequest());
   try {
     const { data } = await axios.get(path);
     const { totalItems } = data;
-    const lastIndex = totalItems <= paginationStep ? totalItems - 1 : paginationStep - 1;
-    dispatch(actions.setLastBooksIndex({ lastIndex }));
+    if (totalItems > 0) {
+      dispatch(actions.setLastBooksIndex({ lastIndex: lastIndex + paginationStep }));
+      dispatch(actions.loadBooksSuccess({ items: data.items }));
+    } else {
+      dispatch(actions.loadBooksSuccess({ items: [] }));
+    }
     dispatch(actions.setBooksCount({ totalItems }));
-    dispatch(actions.loadBooksSuccess({ items: data.items }));
   } catch (err) {
     console.log(err);
     dispatch(actions.loadBooksError({ err }));
