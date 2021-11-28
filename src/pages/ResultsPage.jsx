@@ -46,7 +46,7 @@ const ResultsPage =  ({
   return (
     <div className="books-container">
       <div className="flex flex-wrap">
-      {books.map((book) => <Card key={book.id} bookInfo={book} />)}
+      {books.map((book) => <Card key={book.etag} bookInfo={book} />)}
       </div>
       {(loadingState === 'requesting' && <Spinner />) ||
       (booksCount > lastBookIndex
