@@ -40,6 +40,7 @@ const booksSlice = createSlice({
       state.booksCount = null;
       state.books = [];
       state.lastBookIndex = 0;
+      state.loadingState = 'none';
     },
     setSelectedBook: (state, { payload }) => {
       state.selectedBook = payload.book;

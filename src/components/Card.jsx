@@ -12,7 +12,7 @@ const actionCreators = {
 const Card = ({ bookInfo, setSelectedBook }) => {
   const { title, categories, authors, imageLinks } = bookInfo.volumeInfo;
   
-  const cardTitle = title ? title : '';
+  const cardTitle = title || '';
   const category = categories ? categories[0] : '';
   const author = authors ? authors.join(', ') : '';
   const link = imageLinks ? imageLinks.thumbnail : defaultBook;

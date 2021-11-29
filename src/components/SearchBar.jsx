@@ -37,8 +37,8 @@ const SearchBar = ({
       sortBy: 'relevance',
     },
     onSubmit: async ({ searchInput, categories, sortBy }) => {
-      navigate(routes.resultsPage);
       clearBooks();
+      navigate(routes.resultsPage);
     
       const requestString = requestMaker(searchInput, categories, sortBy);
       const path = pathMaker(requestString);
