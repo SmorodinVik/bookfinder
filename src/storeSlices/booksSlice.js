@@ -9,6 +9,7 @@ const initialState = {
   booksCount: null,
   lastBookIndex: 0,
   selectedBook: null,
+  error: null,
 };
 
 const booksSlice = createSlice({
@@ -18,8 +19,9 @@ const booksSlice = createSlice({
     loadBooksRequest: (state) => {
       state.loadingState = 'requesting';
     },
-    loadBooksError: (state) => {
+    loadBooksError: (state, { payload }) => {
       state.loadingState = 'failed';
+      state.error = payload.error;
     },
     loadBooksSuccess: (state, { payload }) => {
       state.books = [...state.books, ...payload.items];
@@ -59,9 +61,9 @@ export const loadBooks = (path, lastIndex = 0) => async (dispatch) => {
       dispatch(actions.loadBooksSuccess({ items: [] }));
     }
     lastIndex === 0 && dispatch(actions.setBooksCount({ totalItems }));
-  } catch (err) {
-    console.log(err);
-    dispatch(actions.loadBooksError());
+  } catch (error) {
+    console.log(error);
+    dispatch(actions.loadBooksError({ error }));
   }
 };
 

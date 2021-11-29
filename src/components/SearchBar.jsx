@@ -4,10 +4,10 @@ import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import * as booksActions from '../storeSlices/booksSlice.js';
-import { pathMaker, requestMaker } from '../utils/pathCompiler.js';
+import { pathMaker, requestMaker } from '../utils';
 import routes from '../routes.js';
 
-const mapStateToProps = ({ booksLoadingStatus }) => ({ booksLoadingStatus });
+const mapStateToProps = ({ loadingState }) => ({ loadingState });
 
 const actionCreators = {
   loadBooks: booksActions.loadBooks,
@@ -18,7 +18,7 @@ const actionCreators = {
 
 const SearchBar = ({
   loadBooks,
-  booksLoadingStatus,
+  loadingState,
   clearBooks,
   setCurrentRequest,
 }) => {
@@ -63,7 +63,7 @@ const SearchBar = ({
         />
         <button
           type="submit"
-          disabled={booksLoadingStatus === 'loading' || f.values.searchInput === ''}
+          disabled={loadingState === 'requesting' || f.values.searchInput === ''}
           className="btn"
         >
           {t('buttons.findBtn')}

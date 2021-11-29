@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import * as booksActions from '../storeSlices/booksSlice.js';
 import Card from '../components/Card.jsx';
 import Spinner from '../components/Spinner.jsx';
-import { pathMaker } from '../utils/pathCompiler.js';
+import { pathMaker } from '../utils';
 import routes from '../routes.js';
 
 const actionCreators = {
